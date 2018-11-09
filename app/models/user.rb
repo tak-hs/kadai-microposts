@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many :likings, through: :favorites, source: :micropost
   has_many :reverses_of_favorite, class_name: 'Favorite', foreign_key: 'micropost_id'
   has_many :liked, through: :reverses_of_favorites, source: :user
+  
+  has_many :favorites, dependent: :destroy
+  
 
 #follow
   def follow(other_user)
